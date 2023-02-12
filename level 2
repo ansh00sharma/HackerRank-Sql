@@ -1,4 +1,25 @@
 ### Weather observation station 3
 ->  SELECT DISTINCT CITY FROM STATION WHERE ID RLIKE '[02468]$';
 
+### Weather observation station 4
+->  SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;
+
+### Weather observation station 5
+->  select CITY , LENGTH(CITY) FROM STATION  ORDER BY LENGTH(CITY) , CITY LIMIT 1;
+->  SELECT CITY , LENGTH(CITY) FROM STATION  ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1;
+
+### Weather observation station 6
+
+### Weather observation station 7
+
+### Weather observation station 8
+
+### Weather observation station 9
+
+### Weather observation station 10
+
+### Weather observation station 11
+
+### Weather observation station 12
+
 
