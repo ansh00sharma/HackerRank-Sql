@@ -22,4 +22,15 @@
 ### Weather Observation Station 19
 ->  SELECT ROUND(SQRT(POWER(MIN(LAT_N) - MAX(LAT_N),2)+ POWER(MIN(LONG_W) - MAX(LONG_W),2)),4) FROM STATION;
 
-### 
+### Type of Triangle
+->  SELECT
+    CASE
+        WHEN (A+B)>C AND (A+C)>B AND (B+C)>A THEN
+        CASE
+            WHEN ((A=B) AND (A!=C)) OR ((B=C) AND (B!=A)) OR ((C=A) AND (C!=B)) THEN 'Isosceles'
+            WHEN ((A=B) AND (A=C)) OR ((B=A) AND (B=C)) OR ((C=A) AND (C=B)) THEN 'Equilateral'
+            WHEN (A!=B) AND (A!=C) AND (B!=C) THEN 'Scalene'
+        END
+    ELSE 'Not A Triangle'
+    END TRI
+FROM TRIANGLES;
