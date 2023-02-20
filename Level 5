@@ -9,3 +9,13 @@
 
 ### The Report
 ->  
+
+### Binary Tree Nodes
+->  select n , case when p is null then "Root" when n in(select p from bst) then "Inner" else "Leaf" end from bst order by n;
+
+### Weather Observation Station 5
+->  (SELECT CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY), CITY LIMIT 1)
+    UNION
+    (SELECT CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1);
+    
+### 
