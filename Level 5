@@ -18,3 +18,36 @@
     UNION
     (SELECT CITY, LENGTH(CITY) FROM STATION ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1);
     
+### New Companies
+->  SELECT C.COMPANY_CODE, C.FOUNDER ,
+    COUNT(DISTINCT E.LEAD_MANAGER_CODE),
+    COUNT(DISTINCT E.SENIOR_MANAGER_CODE),
+    COUNT(DISTINCT E.MANAGER_CODE),
+    COUNT(DISTINCT E.EMPLOYEE_CODE) FROM
+    COMPANY C INNER JOIN EMPLOYEE E ON C.COMPANY_CODE = E.COMPANY_CODE GROUP BY
+    C.FOUNDER , C.COMPANY_CODE ORDER BY C.COMPANY_CODE
+    
+### Top Competitors
+->  SELECT H.hacker_id, H.name 
+    FROM Submissions AS S 
+    INNER JOIN Hackers AS H ON S.hacker_id = H.hacker_id 
+    INNER JOIN Challenges AS C ON S.challenge_id = C.challenge_id 
+    INNER JOIN Difficulty AS D ON C.difficulty_level = D.difficulty_level 
+    WHERE S.score = D.score 
+    GROUP BY H.hacker_id, H.name 
+    HAVING COUNT(S.score) > 1 
+    ORDER BY COUNT(*) DESC, H.hacker_id;
+    
+### Ollivander's Inventory
+->  SELECT id, age, coins_needed, power
+    FROM WANDS AS W INNER JOIN WANDS_PROPERTY AS P
+    ON W.code = P.code
+    WHERE P.is_evil = 0 AND
+    W.coins_needed = (SELECT MIN(coins_needed)
+                  FROM WANDS AS W1 INNER JOIN WANDS_PROPERTY AS P1 
+                  ON W1.code = P1.code
+                  WHERE W.power = W1.power AND P.age = P1.age)
+    ORDER BY W.POWER DESC, P.AGE DESC;
+    
+### Challenges
+->  
